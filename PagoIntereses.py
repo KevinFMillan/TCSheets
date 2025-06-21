@@ -1,6 +1,7 @@
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 from decouple import config
+import pandas as pd
 
 SHEET_ID = config('SHEET_ID')
 SHEET_KEY_JSON = config('SHEET_KEY_JSON', default='key.json')
@@ -18,6 +19,12 @@ def LeerSheets(IDsheets,key,rango):
     sheet = servicio.spreadsheets()
     resultado = sheet.values().get(spreadsheetId=IDsheets, range=rango).execute()
     values = resultado.get("values",[])
-    print(values)
+    return values
 
-LeerSheets(SHEET_ID, SHEET_KEY_JSON, rango)
+def CrearDataFrame(datos):
+    dataFrame = pd.DataFrame(data=datos)
+    # print()
+    pass
+
+data = LeerSheets(SHEET_ID, SHEET_KEY_JSON, rango)
+print(type(data))
