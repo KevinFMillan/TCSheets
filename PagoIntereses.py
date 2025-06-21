@@ -1,10 +1,11 @@
-from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
+from decouple import config
 
-key = ".json"
-sheetId = ""
-rango = ""
+SHEET_ID = config('SHEET_ID')
+SHEET_KEY_JSON = config('SHEET_KEY_JSON', default='key.json')
+
+rango = "EA!A1:H6"
 
 def LeerSheets(IDsheets,key,rango):
     '''
@@ -19,6 +20,4 @@ def LeerSheets(IDsheets,key,rango):
     values = resultado.get("values",[])
     print(values)
 
-LeerSheets(sheetId, key, rango)
-#python-decouple
-#python-dotenv
+LeerSheets(SHEET_ID, SHEET_KEY_JSON, rango)
