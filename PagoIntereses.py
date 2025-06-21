@@ -20,3 +20,5 @@ def LeerSheets(IDsheets,key,rango):
     print(values)
 
 LeerSheets(sheetId, key, rango)
+#python-decouple
+#python-dotenv
